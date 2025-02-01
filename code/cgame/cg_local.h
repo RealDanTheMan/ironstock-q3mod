@@ -770,6 +770,10 @@ typedef struct {
 	qhandle_t	blueKamikazeShader;
 #endif
 
+#ifdef IRONSTOCK
+	qhandle_t	mod_crosshairtex;
+#endif
+
 	// weapon effect models
 	qhandle_t	bulletFlashModel;
 	qhandle_t	ringFlashModel;

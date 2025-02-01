@@ -33,7 +33,7 @@ static void CG_ModDrawCrosshair(void)
 		ca = 0;
 	}
 
-	hShader = cgs.media.crosshairShader[ ca % NUM_CROSSHAIRS ];
+	hShader = cgs.media.mod_crosshairtex;
 	trap_R_DrawStretchPic(
 		x + cg.refdef.x + 0.5 * (cg.refdef.width - w), 
 		y + cg.refdef.y + 0.5 * (cg.refdef.height - h), 

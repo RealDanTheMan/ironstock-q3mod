@@ -869,6 +869,10 @@ static void CG_RegisterGraphics( void ) {
 		cgs.media.crosshairShader[i] = trap_R_RegisterShader( va("gfx/2d/crosshair%c", 'a'+i) );
 	}
 
+#ifdef IRONSTOCK
+	cgs.media.mod_crosshairtex = trap_R_RegisterShaderNoMip("gfx/2d/crosshairs/crosshair_a.tga");
+#endif
+
 	cgs.media.backTileShader = trap_R_RegisterShader( "gfx/2d/backtile" );
 	cgs.media.noammoShader = trap_R_RegisterShader( "icons/noammo" );
 
