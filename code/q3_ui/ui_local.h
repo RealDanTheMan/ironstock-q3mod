@@ -323,6 +323,7 @@ extern void UI_UpdateCvars( void );
 // ui_mod.c
 //
 extern void UI_ModMainMenu(void);
+extern void UI_ModMenuCache(void);
 
 //
 // ui_credits.c

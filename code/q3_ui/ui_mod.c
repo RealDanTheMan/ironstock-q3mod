@@ -12,6 +12,16 @@ typedef struct {
 
 static modmainmenu_t s_modmain;
 
+void UI_ModMenuCache(void) {
+	uis.charset					= trap_R_RegisterShaderNoMip("text/default_text");
+	uis.charsetProp				= trap_R_RegisterShaderNoMip("gfx/2d/fonts/menu_font1.tga");
+	uis.charsetPropGlow			= trap_R_RegisterShaderNoMip("gfx/2d/fonts/menu_font1_glow.tga");
+	uis.charsetPropB			= trap_R_RegisterShaderNoMip("gfx/2d/fonts/menu_font2.tga");
+	uis.cursor					= trap_R_RegisterShaderNoMip("mod_menu/cursor_a.tga");
+	uis.menuBackShader			= trap_R_RegisterShaderNoMip("ui/menu_bg");
+	uis.menuBackNoLogoShader	= trap_R_RegisterShaderNoMip("ui/menu_bg");
+}
+
 ///
 /// UI_ModLoadMap
 /// Loads default mod test map.

@@ -808,7 +808,11 @@ static void NeedCDKeyAction( qboolean result ) {
 void UI_SetActiveMenu( uiMenuCommand_t menu ) {
 	// this should be the ONLY way the menu system is brought up
 	// ensure minimum menu data is cached
+	#ifdef IRONSTOCK
+	UI_ModMenuCache();
+	#else
 	Menu_Cache();
+	#endif
 
 	switch ( menu ) {
 	case UIMENU_NONE:
@@ -1013,7 +1017,11 @@ qboolean UI_ConsoleCommand( int realTime ) {
 	cmd = UI_Argv( 0 );
 
 	// ensure minimum menu data is available
+	#ifdef IRONSTOCK
+	UI_ModMenuCache();
+	#else
 	Menu_Cache();
+	#endif
 
 	if ( Q_stricmp (cmd, "levelselect") == 0 ) {
 		UI_SPLevelMenu_f();
@@ -1093,7 +1101,11 @@ void UI_Init( void ) {
 	}
 
 	// initialize the menu system
+	#ifdef IRONSTOCK
+	UI_ModMenuCache();
+	#else
 	Menu_Cache();
+	#endif
 
 	uis.activemenu = NULL;
 	uis.menusp     = 0;

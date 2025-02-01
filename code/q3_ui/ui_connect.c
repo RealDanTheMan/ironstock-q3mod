@@ -164,7 +164,11 @@ void UI_DrawConnectScreen( qboolean overlay ) {
 	uiClientState_t	cstate;
 	char			info[MAX_INFO_VALUE];
 
+	#ifdef IRONSTOCK
+	UI_ModMenuCache();
+	#else
 	Menu_Cache();
+	#endif
 
 	if ( !overlay ) {
 		// draw the dialog background
