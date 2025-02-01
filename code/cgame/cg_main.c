@@ -805,6 +805,19 @@ static void CG_RegisterGraphics( void ) {
 	int			i;
 	char		items[MAX_ITEMS+1];
 	static char		*sb_nums[11] = {
+		#ifdef IRONSTOCK
+		"text/numbers/zero",
+		"gfx/2d/fonts/numbers/one",
+		"gfx/2d/fonts/numbers/two",
+		"gfx/2d/fonts/numbers/three",
+		"gfx/2d/fonts/numbers/four",
+		"gfx/2d/fonts/numbers/five",
+		"gfx/2d/fonts/numbers/six",
+		"gfx/2d/fonts/numbers/seven",
+		"gfx/2d/fonts/numbers/eight",
+		"gfx/2d/fonts/numbers/nine",
+		"gfx/2d/fonts/numbers/minus",
+		#else
 		"gfx/2d/numbers/zero_32b",
 		"gfx/2d/numbers/one_32b",
 		"gfx/2d/numbers/two_32b",
@@ -816,6 +829,7 @@ static void CG_RegisterGraphics( void ) {
 		"gfx/2d/numbers/eight_32b",
 		"gfx/2d/numbers/nine_32b",
 		"gfx/2d/numbers/minus_32b",
+		#endif
 	};
 
 	// clear any references to old media
@@ -1863,11 +1877,20 @@ void CG_Init( int serverMessageNum, int serverCommandSequence, int clientNum ) {
 	cgs.serverCommandSequence = serverCommandSequence;
 
 	// load a few needed things before we do any screen updates
-	cgs.media.charsetShader		= trap_R_RegisterShader( "gfx/2d/bigchars" );
 	cgs.media.whiteShader		= trap_R_RegisterShader( "white" );
+	
+	#ifdef IRONSTOCK
+	cgs.media.charsetShader		= trap_R_RegisterShader( "text/default_text" );
+	cgs.media.charsetProp		= trap_R_RegisterShaderNoMip( "gfx/2d/fonts/menu_font1.tga" );
+	cgs.media.charsetPropGlow	= trap_R_RegisterShaderNoMip( "gfx/2d/fonts/menu_font1_glow.tga" );
+	cgs.media.charsetPropB		= trap_R_RegisterShaderNoMip( "gfx/2d/fonts/menu_font2.tga" );
+	#else
+	cgs.media.charsetShader		= trap_R_RegisterShader( "gfx/2d/bigchars" );
 	cgs.media.charsetProp		= trap_R_RegisterShaderNoMip( "menu/art/font1_prop.tga" );
 	cgs.media.charsetPropGlow	= trap_R_RegisterShaderNoMip( "menu/art/font1_prop_glo.tga" );
 	cgs.media.charsetPropB		= trap_R_RegisterShaderNoMip( "menu/art/font2_prop.tga" );
+	#endif
+
 
 	CG_RegisterCvars();
 

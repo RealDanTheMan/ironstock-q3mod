@@ -3127,7 +3127,11 @@ void CL_InitRenderer( void ) {
 	re.BeginRegistration( &cls.glconfig );
 
 	// load character sets
+	#ifdef IRONSTOCK
+	cls.charSetShader = re.RegisterShader("text/default_text");
+	#else
 	cls.charSetShader = re.RegisterShader( "gfx/2d/bigchars" );
+	#endif
 	cls.whiteShader = re.RegisterShader( "white" );
 	cls.consoleShader = re.RegisterShader( "console" );
 	g_console_field_width = cls.glconfig.vidWidth / SMALLCHAR_WIDTH - 2;
