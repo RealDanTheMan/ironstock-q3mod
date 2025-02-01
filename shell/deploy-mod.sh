@@ -8,6 +8,7 @@ CWD=$(pwd)
 TITLE="ironstock"
 TARGET="release-linux-x86_64"
 BUILD_PATH="$CWD/build/$TARGET/$TITLE"
+LOCAL_PATH="~/.$TITLE/$TITLE"
 PAK_SRC="$CWD/mod_data/pak"
 PAK_DST="$BUILD_PATH/pak0.pk3"
 rm $PAK_DST
@@ -29,6 +30,10 @@ cp "$SRC_CONFIGS/default.cfg" "$BUILD_PATH/default.cfg"
 
 echo "Deploying auto exec config"
 cp "$SRC_CONFIGS/autoexec.cfg" "$BUILD_PATH/autoexec.cfg"
+
+echo "Deploying local config"
+mkdir -p $LOCAL_PATH
+cp "$SRC_CONFIGS/q3config.cfg" "$LOCAL_PATH/q3config.cfg"
 
 echo ""
 echo "Deployment complete"
