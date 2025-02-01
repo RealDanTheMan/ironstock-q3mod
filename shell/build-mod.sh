@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+make -j$(nproc) BASEGAME="ironstock" BUILD_STANDALONE=1 BUILD_MISSIONPACK=0 BUILD_GAME_QVM=1

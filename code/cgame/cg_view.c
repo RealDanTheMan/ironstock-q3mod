@@ -868,7 +868,11 @@ void CG_DrawActiveFrame( int serverTime, stereoFrame_t stereoView, qboolean demo
 	}
 
 	// actually issue the rendering calls
+	#ifdef IRONSTOCK
+	CG_ModDrawActive(stereoView);
+	#else
 	CG_DrawActive( stereoView );
+	#endif
 
 	if ( cg_stats.integer ) {
 		CG_Printf( "cg.clientFrame:%i\n", cg.clientFrame );

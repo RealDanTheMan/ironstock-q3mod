@@ -1227,6 +1227,15 @@ void ClientSpawn(gentity_t *ent) {
 		// move players to intermission
 		MoveClientToIntermission(ent);
 	}
+
+	#ifdef IRONSTOCK
+	// Empty weapon inventory on client initial setup.
+	for (i = WP_NUM_WEAPONS - 1; i > 0; i--) {
+		client->ps.stats[STAT_WEAPONS] &= (0 << i);
+	}
+	client->ps.weapon = WP_NONE;
+	#endif
+
 	// run a client frame to drop exactly to the floor,
 	// initialize animations and other things
 	client->ps.commandTime = level.time - 100;

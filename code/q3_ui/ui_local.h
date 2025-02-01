@@ -320,6 +320,11 @@ extern void UI_RegisterCvars( void );
 extern void UI_UpdateCvars( void );
 
 //
+// ui_mod.c
+//
+extern void UI_ModMainMenu(void);
+
+//
 // ui_credits.c
 //
 extern void UI_CreditMenu( void );

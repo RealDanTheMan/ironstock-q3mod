@@ -30,7 +30,7 @@ MAIN MENU
 
 
 #include "ui_local.h"
-
+#include "ui_mod.h"
 
 #define ID_SINGLEPLAYER			10
 #define ID_MULTIPLAYER			11
@@ -60,8 +60,8 @@ typedef struct {
 	qhandle_t		bannerModel;
 } mainmenu_t;
 
-
 static mainmenu_t s_main;
+
 
 typedef struct {
 	menuframework_s menu;	
@@ -218,7 +218,7 @@ static void Main_MenuDraw( void ) {
 	else
 	{
 		// standard menu drawing
-		Menu_Draw( &s_main.menu );		
+		Menu_Draw( &s_main.menu );
 	}
 
 	if (uis.demoversion) {
