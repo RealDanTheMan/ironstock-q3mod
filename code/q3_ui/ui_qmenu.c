@@ -1749,8 +1749,7 @@ void Menu_Cache( void )
 	uis.charsetProp				= trap_R_RegisterShaderNoMip("gfx/2d/fonts/menu_font1.tga");
 	uis.charsetPropGlow			= trap_R_RegisterShaderNoMip("gfx/2d/fonts/menu_font1_glow.tga");
 	uis.charsetPropB			= trap_R_RegisterShaderNoMip("gfx/2d/fonts/menu_font2.tga");
-	uis.cursor					= trap_R_RegisterShaderNoMip("ui/cursor");
-	uis.cursor          = trap_R_RegisterShaderNoMip( "menu/art/3_cursor2" );
+	uis.cursor					= trap_R_RegisterShaderNoMip("mod_menu/cursor_a.tga");
 	uis.menuBackShader			= trap_R_RegisterShaderNoMip("ui/menu_bg");
 	uis.menuBackNoLogoShader	= trap_R_RegisterShaderNoMip("ui/menu_bg");
 	#else
