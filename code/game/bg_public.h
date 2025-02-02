@@ -319,6 +319,9 @@ typedef enum {
 	WP_PROX_LAUNCHER,
 	WP_CHAINGUN,
 #endif
+#ifdef IRONSTOCK
+	WP_IRON_PISTOL,
+#endif
 
 	WP_NUM_WEAPONS
 } weapon_t;
@@ -447,7 +450,11 @@ typedef enum {
 	EV_TAUNT_FOLLOWME,
 	EV_TAUNT_GETFLAG,
 	EV_TAUNT_GUARDBASE,
-	EV_TAUNT_PATROL
+	EV_TAUNT_PATROL,
+
+#ifdef IRONSTOCK
+	EV_IRONPISTOL
+#endif
 
 } entity_event_t;
 

@@ -1684,6 +1684,11 @@ static void PM_Weapon( void ) {
 	case WP_CHAINGUN:
 		addTime = 30;
 		break;
+#ifdef IRONSTOCK
+	case WP_IRON_PISTOL:
+		addTime = 250;
+		break;
+#endif
 #endif
 	}
 
