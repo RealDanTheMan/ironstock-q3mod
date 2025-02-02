@@ -1,5 +1,5 @@
 tag_head,
 tag_weapon,
-u_rshoulder,models/players/sarge/band.tga
-u_torso,models/players/sarge/band.tga
+u_rshoulder,models/players/testplayer/band.tga
+u_torso,models/players/testplayer/band.tga
 tag_torso,
