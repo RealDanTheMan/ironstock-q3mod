@@ -1378,6 +1378,12 @@ void CG_DrawWeaponSelect( void );
 
 void CG_OutOfAmmoChange( void );	// should this be in pmove?
 
+
+//
+// cg_modeweapons.c
+//
+void CG_IronPistolFire(entityState_t *es);
+
 //
 // cg_marks.c
 //

@@ -1232,6 +1232,12 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 		DEBUGNAME("EV_DEBUG_LINE");
 		CG_Beam( cent );
 		break;
+	
+#ifdef IRONSTOCK
+	case EV_IRONPISTOL:
+		DEBUGNAME("EV_IRONPISTOL");
+		CG_IronPistolFire(es);
+#endif
 
 	default:
 		DEBUGNAME("UNKNOWN");
