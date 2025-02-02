@@ -1233,7 +1233,10 @@ void ClientSpawn(gentity_t *ent) {
 	for (i = WP_NUM_WEAPONS - 1; i > 0; i--) {
 		client->ps.stats[STAT_WEAPONS] &= (0 << i);
 	}
-	client->ps.weapon = WP_NONE;
+	client->ps.stats[STAT_WEAPONS] |= ( 1 << WP_IRON_PISTOL );
+	client->ps.weapon = WP_IRON_PISTOL;
+	client->ps.ammo[WP_IRON_PISTOL] = 30;
+	client->ps.weaponstate = WEAPON_READY;
 	#endif
 
 	// run a client frame to drop exactly to the floor,
