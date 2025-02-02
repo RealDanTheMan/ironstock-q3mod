@@ -876,6 +876,12 @@ void FireWeapon( gentity_t *ent ) {
 		Bullet_Fire( ent, CHAINGUN_SPREAD, CHAINGUN_DAMAGE, MOD_CHAINGUN );
 		break;
 #endif
+#ifdef IRONSTOCK
+	case WP_IRON_PISTOL:
+		IronPistolWeaponFire(ent);
+		break;
+
+#endif
 	default:
 // FIXME		G_Error( "Bad ent->s.weapon" );
 		break;

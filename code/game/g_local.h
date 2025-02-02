@@ -591,6 +591,13 @@ void G_StartKamikaze( gentity_t *ent );
 #endif
 
 //
+// g_modweapons.c
+//
+#ifdef IRONSTOCK
+void IronPistolWeaponFire(gentity_t* owner);
+#endif
+
+//
 // g_cmds.c
 //
 void DeathmatchScoreboardMessage( gentity_t *ent );
