@@ -915,6 +915,25 @@ Only in One Flag CTF games
 /* sounds */ "sound/weapons/vulcan/wvulwind.wav"
 	},
 #endif
+#ifdef IRONSTOCK
+	{
+		"weapon_ironpistol", 
+		"sound/misc/w_pkup.wav",
+        { 
+			"weapons/pistol/pistol.md3", 
+			NULL,
+			NULL,
+			NULL
+		},
+		"icons/iconw_chaingun",
+		"Chaingun",
+		80,
+		IT_WEAPON,
+		WP_IRON_PISTOL,
+		"",
+		"sound/weapons/vulcan/wvulwind.wav"
+	},
+#endif
 
 	// end of list marker
 	{NULL}
@@ -1379,7 +1398,11 @@ char *eventnames[] = {
 	"EV_TAUNT_FOLLOWME",
 	"EV_TAUNT_GETFLAG",
 	"EV_TAUNT_GUARDBASE",
-	"EV_TAUNT_PATROL"
+	"EV_TAUNT_PATROL",
+
+#ifdef IRONSTOCK
+	"EV_IRONPISTOL"
+#endif
 
 };
 
