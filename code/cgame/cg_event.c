@@ -1237,6 +1237,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 	case EV_IRONPISTOL:
 		DEBUGNAME("EV_IRONPISTOL");
 		CG_IronPistolFire(es);
+		break;
 #endif
 
 	default:
