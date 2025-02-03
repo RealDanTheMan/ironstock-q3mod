@@ -878,7 +878,7 @@ void FireWeapon( gentity_t *ent ) {
 #endif
 #ifdef IRONSTOCK
 	case WP_IRON_PISTOL:
-		IronPistolWeaponFire(ent);
+		IronPistolWeaponFire(ent, forward, muzzle);
 		break;
 
 #endif

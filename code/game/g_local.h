@@ -594,7 +594,7 @@ void G_StartKamikaze( gentity_t *ent );
 // g_modweapons.c
 //
 #ifdef IRONSTOCK
-void IronPistolWeaponFire(gentity_t* owner);
+void IronPistolWeaponFire(gentity_t* owner, vec3_t forward, vec3_t muzzle);
 #endif
 
 //

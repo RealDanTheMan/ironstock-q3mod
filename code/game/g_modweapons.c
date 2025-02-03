@@ -1,9 +1,5 @@
 #include "g_local.h"
 
-static vec3_t wpn_forward;
-static vec3_t wpn_muzzle;
-
-
 ///
 /// Iron pistol weapon default properties
 #define DEF_IRON_PISTOL_DAMAGE	10
@@ -27,14 +23,14 @@ qboolean IronPistolGunshot(vec3_t start, vec3_t end, gentity_t* owner) {
 ///
 /// IronPistolWeaponFire
 /// Game server side logic for pistol fire.
-void IronPistolWeaponFire(gentity_t *owner) {
+void IronPistolWeaponFire(gentity_t *owner, vec3_t forward, vec3_t muzzle) {
 	
 	/// Create temporary event entity to notify client.
 	gentity_t*	event; 
-	event = G_TempEntity(wpn_muzzle, EV_IRONPISTOL);
+	event = G_TempEntity(muzzle, EV_IRONPISTOL);
 
 	/// Populate event info.
-	VectorScale(wpn_forward, DEF_IRON_PISTOL_RANGE, event->s.origin2);
+	VectorScale(forward, DEF_IRON_PISTOL_RANGE, event->s.origin2);
 	SnapVector(event->s.origin2);
 	event->s.eventParm = rand() & 255;
 	event->s.otherEntityNum = owner->s.number;
