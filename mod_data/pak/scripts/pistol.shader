@@ -6,11 +6,13 @@
 
 pistol/smoke
 {
-	nopicmip
-	nomipmaps
+	cull none
+	entityMergable
 	{
 		map weapons/pistol/pistol_smoke.tga
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
+		rgbGen		vertex
+		alphaGen	vertex
 	}
 }
 
