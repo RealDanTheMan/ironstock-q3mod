@@ -810,6 +810,14 @@ void CG_RegisterWeapon( int weaponNum ) {
 		weaponInfo->missileSound = trap_S_RegisterSound( "sound/weapons/rocket/rockfly.wav", qfalse );
 		break;
 
+#ifdef IRONSTOCK
+	case WP_IRON_PISTOL:
+		//weaponInfo->readySound = trap_S_RegisterSound("sound/weapons/pistol/pistol_reload.wav", qfalse);
+		MAKERGB( weaponInfo->flashDlightColor, 1, 0.5f, 0 );
+		weaponInfo->flashSound[0] = trap_S_RegisterSound("sound/weapons/pistol/pistol_gunshot.wav", qfalse);
+		break;
+#endif
+
 	 default:
 		MAKERGB( weaponInfo->flashDlightColor, 1, 1, 1 );
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/rocket/rocklf1a.wav", qfalse );
