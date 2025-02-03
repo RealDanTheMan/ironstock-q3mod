@@ -23,3 +23,11 @@ pistol/bullethole
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 	}
 }
+
+pistol/pistol
+{
+	cull disable
+	{
+		map textures/test/testgrid_blue.tga
+	}
+}
