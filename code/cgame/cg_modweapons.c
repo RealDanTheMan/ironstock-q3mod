@@ -1,5 +1,8 @@
 #include "cg_local.h"
 
+///
+/// CG_IronPistolGunshot
+/// Draws weapon fire effects on the client side.
 static void CG_IronPistolGunshot(vec3_t start, vec3_t end) {
 	trace_t tr;
 	int		start_surface;
@@ -17,10 +20,12 @@ static void CG_IronPistolGunshot(vec3_t start, vec3_t end) {
 		}
 	}
 
+	// Exit early if we had no impact
 	if (tr.surfaceFlags & SURF_NOIMPACT) {
 		return;
 	}
 
+	/// Handle gunshot effects on other players or environment.
 	if (cg_entities[tr.entityNum].currentState.eType == ET_PLAYER) {
 		CG_MissileHitPlayer(WP_IRON_PISTOL, tr.endpos, tr.plane.normal, tr.entityNum );
 	}
