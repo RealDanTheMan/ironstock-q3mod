@@ -1,5 +1,34 @@
 #include "cg_local.h"
 
+static void CG_IronPistolGunshot(vec3_t start, vec3_t end) {
+	trace_t tr;
+	int		start_surface;
+	int		end_surface;
+
+	// Ray trace environment to see what surface types we are hitting.
+	CG_Trace(&tr, start, NULL, NULL, end, 0, MASK_SHOT);
+	start_surface = CG_PointContents(start, 0);
+	end_surface = CG_PointContents(tr.endpos, 0);
+
+	// Create water bullet bubbles.
+	if (start_surface == end_surface) {
+		if (start_surface & CONTENTS_WATER) {
+			CG_BubbleTrail(start, tr.endpos, 16);
+		}
+	}
+
+	if (tr.surfaceFlags & SURF_NOIMPACT) {
+		return;
+	}
+
+	if (cg_entities[tr.entityNum].currentState.eType == ET_PLAYER) {
+		CG_MissileHitPlayer(WP_IRON_PISTOL, tr.endpos, tr.plane.normal, tr.entityNum );
+	}
+	else {
+		CG_MissileHitWall(WP_IRON_PISTOL, 0, tr.endpos, tr.plane.normal, IMPACTSOUND_DEFAULT);
+	}
+}
+
 ///
 /// CG_IronPistolFire
 /// Client side callback for pistol fire.
@@ -34,8 +63,6 @@ void CG_IronPistolFire(entityState_t* es) {
 		cgs.media.smokePuffShader
 	);
 
-	/// TODO: Handle player hit effects.
-	/// TODO: Handle wall hit effects.
-	/// TODO: Handle bullet trail.
+	CG_IronPistolGunshot(es->pos.trBase, es->origin2);
 }
 
