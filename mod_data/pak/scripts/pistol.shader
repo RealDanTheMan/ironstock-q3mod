@@ -18,11 +18,11 @@ pistol/smoke
 
 pistol/bullethole
 {
-	nopicmip
-	nomipmaps
+	polygonOffset
 	{
 		map weapons/pistol/pistol_bullethole.tga
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
+		rgbGen exactVertex
 	}
 }
 
