@@ -1880,6 +1880,16 @@ void CG_MissileHitWall( int weapon, int clientNum, vec3_t origin, vec3_t dir, im
 		break;
 #endif
 
+#ifdef IRONSTOCK
+	case WP_IRON_PISTOL:
+		//mod = cgs.media.bulletFlashModel; // TODO: Explosion model.
+		//shader = cgs.media.mod_pistolBulletholeShader; // TODO: Explosion shader.
+		mark = cgs.media.mod_pistolBulletholeShader;
+		sfx = 0;
+		radius = 4;
+		break;
+#endif
+
 	case WP_MACHINEGUN:
 		mod = cgs.media.bulletFlashModel;
 		shader = cgs.media.bulletExplosionShader;
@@ -1934,6 +1944,7 @@ void CG_MissileHitWall( int weapon, int clientNum, vec3_t origin, vec3_t dir, im
 	} else {
 		CG_ImpactMark( mark, origin, dir, random()*360, 1,1,1,1, alphaFade, radius, qfalse );
 	}
+
 }
 
 

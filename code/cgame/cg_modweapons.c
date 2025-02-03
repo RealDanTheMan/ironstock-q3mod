@@ -65,7 +65,7 @@ void CG_IronPistolFire(entityState_t* es) {
 		cg.time,
 		0,
 		LEF_PUFF_DONT_SCALE,
-		cgs.media.smokePuffShader
+		cgs.media.mod_pistolSmokeShader
 	);
 
 	CG_IronPistolGunshot(es->pos.trBase, es->origin2);

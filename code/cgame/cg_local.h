@@ -772,6 +772,8 @@ typedef struct {
 
 #ifdef IRONSTOCK
 	qhandle_t	mod_crosshairtex;
+	qhandle_t	mod_pistolSmokeShader;
+	qhandle_t	mod_pistolBulletholeShader;
 #endif
 
 	// weapon effect models

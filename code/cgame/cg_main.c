@@ -885,6 +885,8 @@ static void CG_RegisterGraphics( void ) {
 
 #ifdef IRONSTOCK
 	cgs.media.mod_crosshairtex = trap_R_RegisterShaderNoMip("gfx/2d/crosshairs/crosshair_a.tga");
+	cgs.media.mod_pistolSmokeShader = trap_R_RegisterShader("pistol/smoke");
+	cgs.media.mod_pistolBulletholeShader = trap_R_RegisterShader("pistol/bullethole");
 #endif
 
 	cgs.media.backTileShader = trap_R_RegisterShader( "gfx/2d/backtile" );
