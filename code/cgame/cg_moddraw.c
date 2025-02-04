@@ -1,5 +1,7 @@
 #include "cg_local.h"
 
+void CG_DrawField (int x, int y, int width, int value);
+
 ///
 /// CG_DrawCrosshair
 /// Draws player weapon crosshair on the screen.
@@ -8,7 +10,6 @@ static void CG_ModDrawCrosshair(void)
 {
 	float		w, h;
 	qhandle_t	hShader;
-	float		f;
 	float		x, y;
 	int			ca;
 
@@ -50,11 +51,51 @@ static void CG_ModDrawCrosshair(void)
 }
 
 ///
+/// CG_ModDrawHUD
+/// Draw player HUD UI to the screen.
+static void CG_ModDrawHUD(stereoFrame_t stereoFrame) {
+
+	centity_t		*cent;
+	playerState_t	*ps;
+	vec3_t			origin;
+	vec3_t			angles;
+
+	cent = &cg_entities[cg.snap->ps.clientNum];
+	ps = &cg.snap->ps;
+
+	// Draw player health and armor stats.
+	CG_DrawField ( 16, 16, 3, ps->stats[STAT_HEALTH]);
+	CG_DrawField ( 2, 66, 3, ps->stats[STAT_ARMOR]);
+
+	// Draw player weapon.
+	if (cent->currentState.weapon) {
+		origin[0] = 50;
+		origin[1] = 0;
+		origin[2] = 0;
+		angles[YAW] = 45 + 120 * sin( cg.time / 1000.0 );
+		CG_Draw3DModel(
+			CHAR_WIDTH*0.5 + TEXT_ICON_SPACE,
+			410,
+			ICON_SIZE,
+			ICON_SIZE,
+			cg_weapons[ cent->currentState.weapon ].weaponModel,
+			0,
+			origin,
+			angles
+		);
+	}
+
+	// Draw player weapon ammo.
+	CG_DrawField ( 32, 410, 3, ps->ammo[cent->currentState.weapon]);
+}
+
+///
 /// CG CG_ModDraw
 /// Draws 2D elements on the client screen.
 ///
 static void CG_ModDraw2D(stereoFrame_t stereoFrame) {
 	CG_ModDrawCrosshair();
+	CG_ModDrawHUD(stereoFrame);
 }
 
 ///
