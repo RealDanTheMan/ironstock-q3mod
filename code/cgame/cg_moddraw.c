@@ -1,6 +1,61 @@
 #include "cg_local.h"
 
-void CG_DrawField (int x, int y, int width, int value);
+///
+/// CG_ModDrawNum
+/// Modified version of CG_DrawField which allows custom character size.
+static void CG_ModDrawNum (int x, int y, int count, int value, float width, float height) {
+	char	num[16], *ptr;
+	int		l;
+	int		frame;
+
+	if (count < 1) {
+		return;
+	}
+
+	// draw number string
+	if (count > 5) {
+		count = 5;
+	}
+
+	switch (count) {
+	case 1:
+		value = value > 9 ? 9 : value;
+		value = value < 0 ? 0 : value;
+		break;
+	case 2:
+		value = value > 99 ? 99 : value;
+		value = value < -9 ? -9 : value;
+		break;
+	case 3:
+		value = value > 999 ? 999 : value;
+		value = value < -99 ? -99 : value;
+		break;
+	case 4:
+		value = value > 9999 ? 9999 : value;
+		value = value < -999 ? -999 : value;
+		break;
+	}
+
+	Com_sprintf (num, sizeof(num), "%i", value);
+	l = strlen(num);
+	if (l > count)
+		l = count;
+	x += 2 + width*(count - l);
+
+	ptr = num;
+	while (*ptr && l)
+	{
+		if (*ptr == '-')
+			frame = STAT_MINUS;
+		else
+			frame = *ptr -'0';
+
+		CG_DrawPic( x,y, width, height, cgs.media.numberShaders[frame] );
+		x += width;
+		ptr++;
+		l--;
+	}
+}
 
 ///
 /// CG_DrawCrosshair
@@ -60,24 +115,24 @@ static void CG_ModDrawHUDPlayerInfo(playerState_t *ps) {
 
 	// Draw health points.
 	if (hp < 10) {
-		CG_DrawField ( 16, 16, 1, hp);
+		CG_ModDrawNum(16, 16, 1, hp, SMALLCHAR_WIDTH, SMALLCHAR_HEIGHT);
 	}
 	else if (hp < 100) {
-		CG_DrawField ( 16, 16, 2, hp);
+		CG_ModDrawNum(16, 16, 2, hp, SMALLCHAR_WIDTH, SMALLCHAR_HEIGHT);
 	}
 	else {
-		CG_DrawField ( 16, 16, 3, hp); 
+		CG_ModDrawNum(16, 16, 3, hp, SMALLCHAR_WIDTH, SMALLCHAR_HEIGHT); 
 	}
 
 	// Draw armor points.
 	if (armor < 10) {
-		CG_DrawField ( 16, 50, 1, armor);
+		CG_ModDrawNum(16, SMALLCHAR_HEIGHT*2, 1, armor, SMALLCHAR_WIDTH, SMALLCHAR_HEIGHT);
 	}
 	else if (armor < 100) {
-		CG_DrawField ( 16, 50, 2, armor);
+		CG_ModDrawNum(16, SMALLCHAR_HEIGHT*2, 2, armor, SMALLCHAR_WIDTH, SMALLCHAR_HEIGHT);
 	}
 	else {
-		CG_DrawField ( 16, 50, 3, armor);
+		CG_ModDrawNum(16, SMALLCHAR_HEIGHT*2, 3, armor, SMALLCHAR_WIDTH, SMALLCHAR_HEIGHT);
 	}
 }
 
@@ -108,7 +163,14 @@ static void CG_ModDrawHUDWeaponInfo(centity_t *player, playerState_t *state) {
 	}
 
 	// Draw player weapon ammo.
-	CG_DrawField ( 32, 410, 3, state->ammo[player->currentState.weapon]);
+	CG_ModDrawNum(
+		55,
+		425,
+		3,
+		state->ammo[player->currentState.weapon],
+		SMALLCHAR_WIDTH,
+		SMALLCHAR_HEIGHT
+	);
 }
 
 ///
