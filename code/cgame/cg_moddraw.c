@@ -51,24 +51,46 @@ static void CG_ModDrawCrosshair(void)
 }
 
 ///
-/// CG_ModDrawHUD
-/// Draw player HUD UI to the screen.
-static void CG_ModDrawHUD(stereoFrame_t stereoFrame) {
+/// CG_ModDrawHUDPlayerInfo
+/// Draws player stats portion of the HUD (health & armor)
+static void CG_ModDrawHUDPlayerInfo(playerState_t *ps) {
 
-	centity_t		*cent;
-	playerState_t	*ps;
+	const int hp	= ps->stats[STAT_HEALTH];
+	const int armor	= ps->stats[STAT_ARMOR];
+
+	// Draw health points.
+	if (hp < 10) {
+		CG_DrawField ( 16, 16, 1, hp);
+	}
+	else if (hp < 100) {
+		CG_DrawField ( 16, 16, 2, hp);
+	}
+	else {
+		CG_DrawField ( 16, 16, 3, hp); 
+	}
+
+	// Draw armor points.
+	if (armor < 10) {
+		CG_DrawField ( 16, 50, 1, armor);
+	}
+	else if (armor < 100) {
+		CG_DrawField ( 16, 50, 2, armor);
+	}
+	else {
+		CG_DrawField ( 16, 50, 3, armor);
+	}
+}
+
+///
+/// CG_ModDrawHUDWeaponInfo
+/// Draws player weapon portion of the HUD.
+static void CG_ModDrawHUDWeaponInfo(centity_t *player, playerState_t *state) {
+
 	vec3_t			origin;
 	vec3_t			angles;
 
-	cent = &cg_entities[cg.snap->ps.clientNum];
-	ps = &cg.snap->ps;
-
-	// Draw player health and armor stats.
-	CG_DrawField ( 16, 16, 3, ps->stats[STAT_HEALTH]);
-	CG_DrawField ( 2, 66, 3, ps->stats[STAT_ARMOR]);
-
 	// Draw player weapon.
-	if (cent->currentState.weapon) {
+	if (player->currentState.weapon) {
 		origin[0] = 50;
 		origin[1] = 0;
 		origin[2] = 0;
@@ -78,7 +100,7 @@ static void CG_ModDrawHUD(stereoFrame_t stereoFrame) {
 			410,
 			ICON_SIZE,
 			ICON_SIZE,
-			cg_weapons[ cent->currentState.weapon ].weaponModel,
+			cg_weapons[ player->currentState.weapon ].weaponModel,
 			0,
 			origin,
 			angles
@@ -86,7 +108,23 @@ static void CG_ModDrawHUD(stereoFrame_t stereoFrame) {
 	}
 
 	// Draw player weapon ammo.
-	CG_DrawField ( 32, 410, 3, ps->ammo[cent->currentState.weapon]);
+	CG_DrawField ( 32, 410, 3, state->ammo[player->currentState.weapon]);
+}
+
+///
+/// CG_ModDrawHUD
+/// Draw player HUD UI to the screen.
+static void CG_ModDrawHUD(stereoFrame_t stereoFrame) {
+
+	centity_t		*cent;
+	playerState_t	*ps;
+
+	// Get client entity and state.
+	cent = &cg_entities[cg.snap->ps.clientNum];
+	ps = &cg.snap->ps;
+
+	CG_ModDrawHUDPlayerInfo(ps);
+	CG_ModDrawHUDWeaponInfo(cent, ps);
 }
 
 ///
