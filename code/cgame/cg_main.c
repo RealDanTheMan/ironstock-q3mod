@@ -887,6 +887,8 @@ static void CG_RegisterGraphics( void ) {
 	cgs.media.mod_crosshairtex = trap_R_RegisterShaderNoMip("gfx/2d/crosshairs/crosshair_a.tga");
 	cgs.media.mod_pistolSmokeShader = trap_R_RegisterShader("pistol/smoke");
 	cgs.media.mod_pistolBulletholeShader = trap_R_RegisterShader("pistol/bullethole");
+	cgs.media.mod_hudHpIcon = trap_R_RegisterShaderNoMip("hud/hp_icon.tga");
+	cgs.media.mod_hudArmorIcon = trap_R_RegisterShaderNoMip("hud/armor_icon.tga");
 #endif
 
 	cgs.media.backTileShader = trap_R_RegisterShader( "gfx/2d/backtile" );

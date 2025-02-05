@@ -1,5 +1,8 @@
 #include "cg_local.h"
 
+#define MOD_HUD_ICON_SIZE	10
+#define MOD_HUD_TEXT_SIZE	SMALLCHAR_WIDTH * 1.25
+
 ///
 /// CG_ModDrawNum
 /// Modified version of CG_DrawField which allows custom character size.
@@ -113,26 +116,35 @@ static void CG_ModDrawHUDPlayerInfo(playerState_t *ps) {
 	const int hp	= ps->stats[STAT_HEALTH];
 	const int armor	= ps->stats[STAT_ARMOR];
 
-	// Draw health points.
+	// Draw health icon and points.
+	CG_DrawPic(6, 10, MOD_HUD_ICON_SIZE, MOD_HUD_ICON_SIZE, cgs.media.mod_hudHpIcon);
 	if (hp < 10) {
-		CG_ModDrawNum(16, 16, 1, hp, SMALLCHAR_WIDTH, SMALLCHAR_HEIGHT);
+		CG_ModDrawNum(16, MOD_HUD_TEXT_SIZE, 1, hp, MOD_HUD_TEXT_SIZE, MOD_HUD_TEXT_SIZE);
 	}
 	else if (hp < 100) {
-		CG_ModDrawNum(16, 16, 2, hp, SMALLCHAR_WIDTH, SMALLCHAR_HEIGHT);
+		CG_ModDrawNum(16, MOD_HUD_TEXT_SIZE, 2, hp, MOD_HUD_TEXT_SIZE, MOD_HUD_TEXT_SIZE);
 	}
 	else {
-		CG_ModDrawNum(16, 16, 3, hp, SMALLCHAR_WIDTH, SMALLCHAR_HEIGHT); 
+		CG_ModDrawNum(16,MOD_HUD_TEXT_SIZE, 3, hp, MOD_HUD_TEXT_SIZE, MOD_HUD_TEXT_SIZE); 
 	}
 
-	// Draw armor points.
+	// Draw armor icon and points.
+	CG_DrawPic(
+		6,
+		MOD_HUD_TEXT_SIZE*2,
+		MOD_HUD_ICON_SIZE,
+		MOD_HUD_ICON_SIZE,
+		cgs.media.mod_hudArmorIcon
+	);
+
 	if (armor < 10) {
-		CG_ModDrawNum(16, SMALLCHAR_HEIGHT*2, 1, armor, SMALLCHAR_WIDTH, SMALLCHAR_HEIGHT);
+		CG_ModDrawNum(16, MOD_HUD_TEXT_SIZE*2, 1, armor, MOD_HUD_TEXT_SIZE, MOD_HUD_TEXT_SIZE);
 	}
 	else if (armor < 100) {
-		CG_ModDrawNum(16, SMALLCHAR_HEIGHT*2, 2, armor, SMALLCHAR_WIDTH, SMALLCHAR_HEIGHT);
+		CG_ModDrawNum(16, MOD_HUD_TEXT_SIZE*2, 2, armor, MOD_HUD_TEXT_SIZE, MOD_HUD_TEXT_SIZE);
 	}
 	else {
-		CG_ModDrawNum(16, SMALLCHAR_HEIGHT*2, 3, armor, SMALLCHAR_WIDTH, SMALLCHAR_HEIGHT);
+		CG_ModDrawNum(16, MOD_HUD_TEXT_SIZE*2, 3, armor, MOD_HUD_TEXT_SIZE, MOD_HUD_TEXT_SIZE);
 	}
 }
 
@@ -168,8 +180,8 @@ static void CG_ModDrawHUDWeaponInfo(centity_t *player, playerState_t *state) {
 		425,
 		3,
 		state->ammo[player->currentState.weapon],
-		SMALLCHAR_WIDTH,
-		SMALLCHAR_HEIGHT
+		MOD_HUD_TEXT_SIZE,
+		MOD_HUD_TEXT_SIZE
 	);
 }
 

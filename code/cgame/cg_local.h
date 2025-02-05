@@ -774,6 +774,8 @@ typedef struct {
 	qhandle_t	mod_crosshairtex;
 	qhandle_t	mod_pistolSmokeShader;
 	qhandle_t	mod_pistolBulletholeShader;
+	qhandle_t	mod_hudHpIcon;
+	qhandle_t	mod_hudArmorIcon;
 #endif
 
 	// weapon effect models
