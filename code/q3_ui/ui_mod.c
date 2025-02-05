@@ -36,6 +36,18 @@ void UI_ModLoadMap(const char* map_name) {
 }
 
 ///
+/// UI_ModExitMenu
+/// Exits main menu.
+static void UI_ModExitMenu(qboolean result) {
+
+	if( !result ) {
+		return;
+	}
+	UI_PopMenu();
+	UI_CreditMenu();
+}
+
+///
 /// Mod_Main_MenuEvent
 /// Handle custom mod main menu events.
 void Mod_Main_MenuEvent (void* ptr, int event) {
@@ -49,8 +61,7 @@ void Mod_Main_MenuEvent (void* ptr, int event) {
 		break;
 
 	case ID_MOD_EXIT:
-		// TODO: Exit game
-		//UI_ConfirmMenu( "EXIT GAME?", 0, MainMenu_ExitAction );
+		UI_ConfirmMenu( "EXIT GAME?", 0, UI_ModExitMenu);
 		break;
 	}
 }
