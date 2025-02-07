@@ -1,0 +1,7 @@
+{
+	map			"helloquake"
+	bots		"TestCreepBot"
+	longname	"Hello Quake Map"
+	fraglimit	30
+	type		"single ffa tourney"
+}
