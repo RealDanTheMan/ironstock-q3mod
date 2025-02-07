@@ -29,7 +29,7 @@ void UI_ModLoadMap(const char* map_name) {
 	Com_Printf( "Loading standalone mod map\n" );
 
 	trap_Cvar_SetValue("sv_pure", 0);
-	trap_Cvar_SetValue("bot_enable", 0);
+	trap_Cvar_SetValue("bot_enable", 1);
 	trap_Cvar_SetValue("g_gametype", 0);
 
 	trap_Cmd_ExecuteText( EXEC_APPEND, va( "wait ; wait ; map %s; wait; \n", map_name));
