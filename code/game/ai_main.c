@@ -50,6 +50,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "ai_dmnet.h"
 #include "ai_vcmd.h"
 
+#ifdef IRONSTOCK
+#include "ai_mod.h"
+#endif
+
 //
 #include "chars.h"
 #include "inv.h"
@@ -1054,7 +1058,11 @@ int BotAI(int client, float thinktime) {
 	//get the area the bot is in
 	bs->areanum = BotPointAreaNum(bs->origin);
 	//the real AI
+#ifdef IRONSTOCK
+	AI_ModUpdateBot(bs, thinktime);
+#else
 	BotDeathmatchAI(bs, thinktime);
+#endif
 	//set the weapon selection every AI frame
 	trap_EA_SelectWeapon(bs->client, bs->weaponnum);
 	//subtract the delta angles
