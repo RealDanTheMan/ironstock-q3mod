@@ -50,7 +50,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #define CT_FLOAT				2
 #define CT_STRING				3
 
-#define DEFAULT_CHARACTER		"bots/default_c.c"
+#ifdef IRONSTOCK
+	#define DEFAULT_CHARACTER		"bots/bot_creeptest_c.c"
+#else
+	#define DEFAULT_CHARACTER		"bots/default_c.c"
+#endif
+
 
 //characteristic value
 union cvalue
