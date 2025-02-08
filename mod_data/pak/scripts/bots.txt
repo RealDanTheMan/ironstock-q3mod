@@ -1,6 +1,6 @@
 {
-	name		TestCreepBot
-	model		TestCharacter
-	aifile		bots/sarge_c.c
+	name		BotCreepTest
+	model		testplayer
+	aifile		bots/bot_creeptest.c
 	arenaLord	1
 }

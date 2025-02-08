@@ -1,6 +1,27 @@
 {
 	map			"helloquake"
-	bots		"TestCreepBot"
+	bots		"BotCreepTest"
+	longname	"Hello Quake Map"
+	fraglimit	5
+	type		"single ffa tourney"
+}
+{
+	map			"helloquake"
+	bots		"BotCreepTest"
+	longname	"Hello Quake Map"
+	fraglimit	10
+	type		"single ffa tourney"
+}
+{
+	map			"helloquake"
+	bots		"BotCreepTest"
+	longname	"Hello Quake Map"
+	fraglimit	20
+	type		"single ffa tourney"
+}
+{
+	map			"helloquake"
+	bots		"BotCreepTest"
 	longname	"Hello Quake Map"
 	fraglimit	30
 	type		"single ffa tourney"
