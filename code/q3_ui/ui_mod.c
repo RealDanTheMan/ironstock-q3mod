@@ -32,7 +32,7 @@ void UI_ModLoadMap(const char* map_name) {
 	trap_Cvar_SetValue("bot_enable", 1);
 	trap_Cvar_SetValue("g_gametype", 0);
 
-	trap_Cmd_ExecuteText( EXEC_APPEND, va( "wait ; wait ; map %s; wait; \n", map_name));
+	trap_Cmd_ExecuteText( EXEC_APPEND, va( "wait ; wait ; spmap %s; wait; \n", map_name));
 }
 
 ///
