@@ -123,7 +123,12 @@ int AI_ModRandomMapArea(void) {
 		return -1;
 	}
 
-	return areas[rand() & num];
+	/// No need for random area if there is only one.
+	if (num == 1) {
+		return areas[0];
+	}
+
+	return areas[rand() & (num - 1)];
 }
 
 ///
@@ -180,7 +185,8 @@ void AIEnter_WalkAround(bot_state_t *state, char* msg) {
 		state->ainode = AINode_MoveToGoal;
 
 		Com_Printf(
-			"Mod AI: Random map pos -> x:%f y:%f z:%f\n",
+			"Mod AI: Random map pos (area: %i) -> x:%f y:%f z:%f\n",
+			goal.areanum,
 			goal.origin[0],
 			goal.origin[1],
 			goal.origin[2]
