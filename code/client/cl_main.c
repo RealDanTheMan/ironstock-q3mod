@@ -3132,8 +3132,13 @@ void CL_InitRenderer( void ) {
 	#else
 	cls.charSetShader = re.RegisterShader( "gfx/2d/bigchars" );
 	#endif
+#ifdef IRONSTOCK
+	cls.whiteShader = re.RegisterShader("ui/logo_bg");
+	cls.consoleShader = re.RegisterShader("ui/logo_bg");
+#else
 	cls.whiteShader = re.RegisterShader( "white" );
 	cls.consoleShader = re.RegisterShader( "console" );
+#endif
 	g_console_field_width = cls.glconfig.vidWidth / SMALLCHAR_WIDTH - 2;
 	g_consoleField.widthInChars = g_console_field_width;
 }

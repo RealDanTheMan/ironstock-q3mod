@@ -21,3 +21,12 @@ ui/cursor
 		map mod_menu/cursor_a.tga
 	}
 }
+
+ui/logo_bg
+{
+	nopicmip
+	nomipmaps
+	{
+		map mod_menu/logo_background.tga
+	}
+}
