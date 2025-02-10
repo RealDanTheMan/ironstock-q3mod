@@ -38,7 +38,7 @@ qboolean IronPistolGunshot(vec3_t start, vec3_t end, gentity_t* owner, vec3_t fo
 			trace.endpos,
 			DEF_IRON_PISTOL_DAMAGE,
 			0,
-			MOD_RAILGUN
+			MOD_IRON_PISTOL
 		);
 
 		return qtrue;

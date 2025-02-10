@@ -272,6 +272,9 @@ char *BotWeaponNameForMeansOfDeath(int mod) {
 		case MOD_KAMIKAZE: return "Kamikaze";
 		case MOD_JUICED: return "Prox mine";
 #endif
+#ifdef IRONSTOCK
+		case MOD_IRON_PISTOL: return "Iron Pistol";
+#endif
 		case MOD_GRAPPLE: return "Grapple";
 		default: return "[unknown weapon]";
 	}
