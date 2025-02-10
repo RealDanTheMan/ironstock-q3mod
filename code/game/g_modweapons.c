@@ -9,15 +9,42 @@
 /// IronPistolGunshot
 /// Game server side logic for actually shooting the pistol.
 /// Triggers pistol gunshot and damaging victims or environment.
-qboolean IronPistolGunshot(vec3_t start, vec3_t end, gentity_t* owner) {
+qboolean IronPistolGunshot(vec3_t start, vec3_t end, gentity_t* owner, vec3_t forward) {
 
 	trace_t		trace;
-	int			dmg;
 	vec3_t		tr_start;
 	vec3_t		tr_end;
-	qboolean	hit = qfalse;
+	gentity_t   *victim;
 
-	return hit;
+	VectorCopy(start, tr_start);
+	VectorCopy(end, tr_end);
+
+	/// Perform ray cast to see what gunshot bullet intersects with.
+	trap_Trace(&trace, tr_start, NULL, NULL, tr_end, owner->s.number, MASK_SHOT);
+	victim = &g_entities[trace.entityNum];
+
+	/// Exit early if we havent hit anything particular.
+	if(trace.surfaceFlags & SURF_NOIMPACT) {
+		return qfalse;
+	}
+
+	/// Apply damage to victim.
+	if (victim->takedamage) {
+		G_Damage(
+			victim,
+			owner,
+			owner,
+			forward,
+			trace.endpos,
+			DEF_IRON_PISTOL_DAMAGE,
+			0,
+			MOD_RAILGUN
+		);
+
+		return qtrue;
+	}
+
+	return qfalse;
 }
 
 ///
@@ -36,7 +63,7 @@ void IronPistolWeaponFire(gentity_t *owner, vec3_t forward, vec3_t muzzle) {
 	event->s.otherEntityNum = owner->s.number;
 
 	/// Perform pistol gunshot.
-	IronPistolGunshot(event->s.pos.trBase, event->s.origin2, owner);
+	IronPistolGunshot(event->s.pos.trBase, event->s.origin2, owner, forward);
 
 	/// TODO: Create blast entity.
 }
