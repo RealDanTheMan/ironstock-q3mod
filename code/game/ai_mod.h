@@ -10,7 +10,8 @@
 #define AI_MOD_H_
 
 //#define DEBUG
-//#define DEBUG_AI_MOVE
+#define DEBUG_AI
+
 
 typedef struct map_location_s {
 	int		areanum;

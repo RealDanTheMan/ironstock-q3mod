@@ -184,6 +184,7 @@ void AIEnter_WalkAround(bot_state_t *state, char* msg) {
 		trap_BotPushGoal(state->gs, &goal);
 		state->ainode = AINode_MoveToGoal;
 
+#ifdef DEBUG_AI
 		Com_Printf(
 			"Mod AI: Random map pos (area: %i) -> x:%f y:%f z:%f\n",
 			goal.areanum,
@@ -191,6 +192,7 @@ void AIEnter_WalkAround(bot_state_t *state, char* msg) {
 			goal.origin[1],
 			goal.origin[2]
 		);
+#endif
 	}
 	else {
 		AIEnter_Idle(state, "Failed to walk around, back to idle");
