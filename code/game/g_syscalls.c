@@ -317,6 +317,10 @@ int trap_AAS_AreaInfo( int areanum, void /* struct aas_areainfo_s */ *info ) {
 	return syscall( BOTLIB_AAS_AREA_INFO, areanum, info );
 }
 
+int trap_AAS_NumAreas(void) {
+	return syscall(BOTLIB_AAS_NUM_AREAS);
+}
+
 int trap_AAS_PointContents(vec3_t point) {
 	return syscall( BOTLIB_AAS_POINT_CONTENTS, point );
 }

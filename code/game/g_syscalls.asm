@@ -77,31 +77,26 @@ equ trap_BotUserCommand					-212
 
 
 
-equ trap_AAS_EnableRoutingArea		-301
-equ trap_AAS_BBoxAreas				-302
-equ trap_AAS_AreaInfo				-303
+equ trap_AAS_EnableRoutingArea			-301
+equ trap_AAS_BBoxAreas					-302
+equ trap_AAS_AreaInfo					-303
 equ trap_AAS_EntityInfo					-304
-
 equ trap_AAS_Initialized				-305
 equ trap_AAS_PresenceTypeBoundingBox	-306
 equ trap_AAS_Time						-307
-
 equ trap_AAS_PointAreaNum				-308
 equ trap_AAS_TraceAreas					-309
-
 equ trap_AAS_PointContents				-310
 equ trap_AAS_NextBSPEntity				-311
 equ trap_AAS_ValueForBSPEpairKey		-312
 equ trap_AAS_VectorForBSPEpairKey		-313
 equ trap_AAS_FloatForBSPEpairKey		-314
 equ trap_AAS_IntForBSPEpairKey			-315
-
 equ trap_AAS_AreaReachability			-316
-
 equ trap_AAS_AreaTravelTimeToGoalArea	-317
-
 equ trap_AAS_Swimming					-318
 equ trap_AAS_PredictClientMovement		-319
+equ trap_AAS_NumAreas					-320
 
 
 

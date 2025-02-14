@@ -225,6 +225,8 @@ typedef struct aas_export_s
 	int			(*AAS_TraceAreas)(vec3_t start, vec3_t end, int *areas, vec3_t *points, int maxareas);
 	int			(*AAS_BBoxAreas)(vec3_t absmins, vec3_t absmaxs, int *areas, int maxareas);
 	int			(*AAS_AreaInfo)( int areanum, struct aas_areainfo_s *info );
+	int			(*AAS_NumAreas)(void); 
+
 	//--------------------------------------------
 	// be_aas_bspq3.c
 	//--------------------------------------------

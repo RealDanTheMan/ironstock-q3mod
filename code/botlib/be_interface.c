@@ -675,6 +675,7 @@ static void Init_AAS_Export( aas_export_t *aas ) {
 	aas->AAS_TraceAreas = AAS_TraceAreas;
 	aas->AAS_BBoxAreas = AAS_BBoxAreas;
 	aas->AAS_AreaInfo = AAS_AreaInfo;
+	aas->AAS_NumAreas = AAS_NumAreas;
 	//--------------------------------------------
 	// be_aas_bspq3.c
 	//--------------------------------------------

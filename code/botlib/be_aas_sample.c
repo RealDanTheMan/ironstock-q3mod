@@ -1379,6 +1379,14 @@ int AAS_AreaInfo( int areanum, aas_areainfo_t *info )
 	VectorCopy(aasworld.areas[areanum].center, info->center);
 	return sizeof(aas_areainfo_t);
 } //end of the function AAS_AreaInfo
+
+///
+/// AAS_NumAreas
+/// Get number of navigation areas in currently loaded map.
+int AAS_NumAreas(void) {
+	return aasworld.numareas;
+}
+
 //===========================================================================
 //
 // Parameter:				-

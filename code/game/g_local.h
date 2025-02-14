@@ -816,31 +816,26 @@ void	trap_BotUserCommand(int client, usercmd_t *ucmd);
 
 int		trap_AAS_BBoxAreas(vec3_t absmins, vec3_t absmaxs, int *areas, int maxareas);
 int		trap_AAS_AreaInfo( int areanum, void /* struct aas_areainfo_s */ *info );
+int		trap_AAS_NumAreas(void);
 void	trap_AAS_EntityInfo(int entnum, void /* struct aas_entityinfo_s */ *info);
-
 int		trap_AAS_Initialized(void);
 void	trap_AAS_PresenceTypeBoundingBox(int presencetype, vec3_t mins, vec3_t maxs);
 float	trap_AAS_Time(void);
-
 int		trap_AAS_PointAreaNum(vec3_t point);
 int		trap_AAS_PointReachabilityAreaIndex(vec3_t point);
 int		trap_AAS_TraceAreas(vec3_t start, vec3_t end, int *areas, vec3_t *points, int maxareas);
-
 int		trap_AAS_PointContents(vec3_t point);
 int		trap_AAS_NextBSPEntity(int ent);
 int		trap_AAS_ValueForBSPEpairKey(int ent, char *key, char *value, int size);
 int		trap_AAS_VectorForBSPEpairKey(int ent, char *key, vec3_t v);
 int		trap_AAS_FloatForBSPEpairKey(int ent, char *key, float *value);
 int		trap_AAS_IntForBSPEpairKey(int ent, char *key, int *value);
-
 int		trap_AAS_AreaReachability(int areanum);
-
 int		trap_AAS_AreaTravelTimeToGoalArea(int areanum, vec3_t origin, int goalareanum, int travelflags);
 int		trap_AAS_EnableRoutingArea( int areanum, int enable );
 int		trap_AAS_PredictRoute(void /*struct aas_predictroute_s*/ *route, int areanum, vec3_t origin,
 							int goalareanum, int travelflags, int maxareas, int maxtime,
 							int stopevent, int stopcontents, int stoptfl, int stopareanum);
-
 int		trap_AAS_AlternativeRouteGoals(vec3_t start, int startareanum, vec3_t goal, int goalareanum, int travelflags,
 										void /*struct aas_altroutegoal_s*/ *altroutegoals, int maxaltroutegoals,
 										int type);
