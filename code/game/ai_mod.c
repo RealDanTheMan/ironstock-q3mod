@@ -237,7 +237,7 @@ int AINode_MoveToGoal(bot_state_t *state) {
 	bot_goal_t			goal;
 	bot_moveresult_t	result;
 
-	/// Fetch current goal and move towardsit.
+	/// Fetch current goal and move towards it.
 	trap_BotGetTopGoal(state->gs, &goal);
 
 	state->tfl = TFL_DEFAULT;
@@ -246,15 +246,20 @@ int AINode_MoveToGoal(bot_state_t *state) {
 
 	/// Reset the bot if for some reason we are unable to move.
 	if (result.failure) {
-		Com_Printf("Mod AI: Failed to move a bot!\n");
+		Com_Printf(S_COLOR_YELLOW "WARNING: Mod AI: Failed to move a bot!\n");
 		trap_BotResetAvoidReach(state->ms);
 		
 		/// Reset current goal and go back to idle state.
 		trap_BotPopGoal(state->gs);
 		AIEnter_Idle(state, "Move to Goal failed, back to idle state");
+		return qfalse;
 	}
 
 	BotAIBlocked(state, &result, qtrue);
+
+	/// Ensure bot is facing movement direction vector.
+	vectoangles(result.movedir, state->ideal_viewangles);
+	state->ideal_viewangles[2] *= 0.5;
 	
 	/// Handle bot reaching its destination.
 	dist = Distance(state->origin, goal.origin);
