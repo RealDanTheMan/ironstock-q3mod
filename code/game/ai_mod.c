@@ -31,6 +31,7 @@
 #include "syn.h"				//synonyms
 #include "match.h"				//string matching types and vars
 
+
 ///
 /// AI_ModUpdateBot
 /// Main update method for all Ironstock AI bots.
@@ -93,22 +94,38 @@ void AI_ModInitBot(bot_state_t *state) {
 ///
 /// AI_ModRandomMapArea
 /// Get random reachagble area on loaded map.
+/// Note: Q3 area indices are 1 based.
 /// Returns -1 if no random area could be resolved.
 int AI_ModRandomMapArea(void) {
 
-	int area;
+	int	area		= 0;
+	int num			= 0;
+	int numareas	= 0;
 	int areas[128];
-	int num = 0;
 
 	if (!trap_AAS_Initialized()) {
 		Com_Error(0, "Attempting to use AAS when not initialised!");
 		return -1;
 	}
 
+	numareas = trap_AAS_NumAreas();
+
+	/// Return -1 if there is not a single area in the current map.
+	/// This indicates that either map is not loaded or its in a broken state.
+	if (numareas == 0) {
+		return -1;
+	}
+
+	/// If there is only one area in the map there is no need for random logic or
+	/// reachability tests.
+	if (numareas == 1) {
+		return 1;
+	}
+
 	/// Lookup all AAS reachable areas.
-	for (area = trap_AAS_NextBSPEntity(0); area; area = trap_AAS_NextBSPEntity(area)) {
-		if (trap_AAS_AreaReachability(area)) {
-			areas[num] = area;
+	for (area = 0; area < numareas; area++) {
+		if (trap_AAS_AreaReachability(area + 1)) {
+			areas[num] = area + 1;
 			num ++;
 		}
 
@@ -143,6 +160,9 @@ qboolean AI_ModRandomMapLocation(map_location_t *loc) {
 	/// Fetch random area from current map.
 	area = AI_ModRandomMapArea();
 	if (area == -1) {
+#ifdef DEBUG_MOD_AI
+		Com_Printf(S_COLOR_YELLOW "WARNING! Mod AI: Failed to resolve a random map area\n");
+#endif
 		return qfalse;
 	}
 
@@ -184,7 +204,7 @@ void AIEnter_WalkAround(bot_state_t *state, char* msg) {
 		trap_BotPushGoal(state->gs, &goal);
 		state->ainode = AINode_MoveToGoal;
 
-#ifdef DEBUG_AI
+#ifdef DEBUG_MOD_AI
 		Com_Printf(
 			"Mod AI: Random map pos (area: %i) -> x:%f y:%f z:%f\n",
 			goal.areanum,
@@ -228,6 +248,10 @@ int AINode_MoveToGoal(bot_state_t *state) {
 	if (result.failure) {
 		Com_Printf("Mod AI: Failed to move a bot!\n");
 		trap_BotResetAvoidReach(state->ms);
+		
+		/// Reset current goal and go back to idle state.
+		trap_BotPopGoal(state->gs);
+		AIEnter_Idle(state, "Move to Goal failed, back to idle state");
 	}
 
 	BotAIBlocked(state, &result, qtrue);

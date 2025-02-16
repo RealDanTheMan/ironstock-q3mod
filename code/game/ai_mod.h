@@ -9,8 +9,8 @@
 #ifndef AI_MOD_H_
 #define AI_MOD_H_
 
-//#define DEBUG
-#define DEBUG_AI
+#define DEBUG
+#define DEBUG_MOD_AI
 
 
 typedef struct map_location_s {
