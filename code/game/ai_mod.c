@@ -258,7 +258,7 @@ int AINode_MoveToGoal(bot_state_t *state) {
 	
 	/// Handle bot reaching its destination.
 	dist = Distance(state->origin, goal.origin);
-	if (dist < 1) {
+	if (dist < 128) {
 		trap_BotPopGoal(state->gs);
 		AIEnter_Idle(state, "Goal location reached, entering idle");
 	}
