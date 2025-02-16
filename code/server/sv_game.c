@@ -484,7 +484,7 @@ intptr_t SV_GameSystemCalls( intptr_t *args ) {
 		botlib_export->aas.AAS_EntityInfo( args[1], VMA(2) );
 		return 0;
 	case BOTLIB_AAS_NUM_AREAS:
-		botlib_export->aas.AAS_NumAreas();
+		return botlib_export->aas.AAS_NumAreas();
 	case BOTLIB_AAS_INITIALIZED:
 		return botlib_export->aas.AAS_Initialized();
 	case BOTLIB_AAS_PRESENCE_TYPE_BOUNDING_BOX:
