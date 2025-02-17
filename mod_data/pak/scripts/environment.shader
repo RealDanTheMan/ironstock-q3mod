@@ -9,19 +9,58 @@ textures/env/shader_floor_tile_01
 {
 	qer_editorimage		textures/env/floor_tile_detail_01.tga
 
+	surfaceparm nolightmap
 	{
 		map			textures/env/floor_tile_base_01.tga
-		blendFunc	GL_ONE GL_ONE
+		blendFunc	GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbGen		identity
 	}
+
+	surfaceparm nolightmap
+	cull disable
 	{
 		map			textures/env/floor_tile_detail_01.tga
 		blendFunc	GL_ONE GL_ONE
-		rgbGen wave sin 0.75 0.5 0.5 0.5
+		alphaFunc	GE128
+		rgbGen		wave triangle 0.9 1.25 0.5 0.5
 	}
+
+	surfaceparm nolightmap
+	cull disable
 	{
 		map			textures/env/floor_tile_overlay_01.tga
 		blendFunc	GL_ONE GL_ONE
-		rgbGen wave sin 0.9 0.5 0 0.5
+		alphaFunc	GE128
+		rgbGen		wave triangle 0.9 1.25 0.0 0.5
+	}
+}
+
+textures/env/shader_wall_tile_01
+{
+	qer_editorimage		textures/env/wall_tile_detail_01.tga
+
+	surfaceparm nolightmap
+	{
+		map			textures/env/wall_tile_base_01.tga
+		blendFunc	GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
+		rgbGen		identity
+	}
+
+	surfaceparm nolightmap
+	cull disable
+	{
+		map			textures/env/wall_tile_detail_01.tga
+		blendFunc	GL_ONE GL_ONE
+		alphaFunc	GE128
+		rgbGen		wave sin 0.9 1.25 0.5 0.5
+	}
+
+	surfaceparm nolightmap
+	cull disable
+	{
+		map			textures/env/wall_tile_overlay_01.tga
+		blendFunc	GL_ONE GL_ONE
+		alphaFunc	GE128
+		rgbGen		wave sin 0.9 1.25 0 0.5
 	}
 }
